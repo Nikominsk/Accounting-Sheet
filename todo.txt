@@ -1,0 +1,46 @@
+- change in database, html und php rang to rank
+
+-database table user 
+ALTER TABLE user
+ADD email VARCHAR(320); 
+
+- ALTER TABLE user
+ADD google_account bit(1) DEFAULT 0; 
+
+- database: username standart to "NULL"
+
+- create table language (
+      languageId INT NOT NULL AUTO_INCREMENT PRIMARy KEY,
+		language CHAR(2) NOT NULL  default 1
+);
+
+insert into language Values ('', 'EN');
+insert into language Values ('', 'DE');
+
+- create table number_format (
+      format Id INT NOT NULL AUTO_INCREMENT PRIMARy KEY,
+      format CHAR(5) NOT NULL default 1
+);
+
+insert into number_format Values ('', 'en_US');
+insert into number_format Values ('', 'de_DE');
+
+- rename header of table settings (Id) + languageId and numberFormatId default 1
+and add constraints
+
+ALTER TABLE setting
+ADD CONSTRAINT setting_language FOREIGN KEY (languageId)
+    REFERENCES language(languageId);
+
+ALTER TABLE setting
+ADD CONSTRAINT setting_numberformat FOREIGN KEY (number_formatId)
+    REFERENCES number_format(formatId);
+
+- no char 2 but 5 (for dates)
+
+- table user, make username to standard NULL
+- table user, password type binaray of length 60
+
+- table rang rename to rank as well as column names
+
+- advance and cost descimal(8,2) to decimal(9,2)

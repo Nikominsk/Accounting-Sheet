@@ -1,0 +1,134 @@
+h2 {
+    font-size: 30px;
+    padding-top: 10px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    width: auto;
+    text-decoration: underline var(--secondary-color);
+}
+
+
+h3 {
+    font-size: 12px;
+    padding-bottom: 15px;
+    width: auto;
+}
+
+.text-algin-center {
+    text-align: center;
+}
+
+#form-container {
+    position: absolute;
+    width: 400px;
+    max-width: 90%;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+    padding: 15px 30px;
+    
+
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    border-radius: 3px;
+
+    font-size: var(--default-font-size);
+
+    overflow: hidden;
+}
+
+#form-container input {
+    width: 100%;
+
+    margin: 10px 0;
+
+    outline-width: 0;
+
+    border: none;
+    border-bottom: 1px solid lightgray;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#form-container input[type="text"], #form-container input[type="email"], #form-container input[type="password"] {
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+
+#form-container input[type='submit'] {
+    padding: 10px;
+    
+    
+    border: 1px solid var(--secondary-color);
+    background-color: var(--secondary-color);
+
+    border-radius: 3px;
+    color: white;
+
+    cursor: pointer;
+}
+
+#form-container #label-forgot-password {
+    display: block; /* so I can do text-algin right */
+    font-size: 14px;
+    color: gray;
+    text-decoration: none;
+    text-align: right;
+}
+
+#form-container #label-sign-up {
+    display: block; /* so I can do text-algin right */
+
+    margin-top: 80px;
+
+    font-size: 14px;
+    color: var(--secondary-color);
+    text-decoration: none;
+    text-align: center;
+}
+
+/* START ALERT */
+
+.alert {
+    display: none;
+
+    position: fixed;
+    width: 400px;
+    left: 0; 
+    right: 0; 
+    top: 10px;
+    margin-left: auto; 
+    margin-right: auto; 
+
+    padding: 10px 10px 15px 10px;
+
+    background-color: white;
+    box-shadow:0px 1px 5px #999;
+    border-radius: 2px;
+
+    font-size: 1.5em;    
+    text-align: center;
+
+    z-index: 9999;
+}
+
+.alert-failure {
+    color: red;
+}
+
+/* END ALERT */
+
+/* GOOGLE LOGIN BUTTON */
+
+
+#my-signin2 {
+    display: flex;
+    justify-content: center; /* center google sign in button */
+    padding-top: 10px;
+}

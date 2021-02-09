@@ -1,0 +1,51 @@
+RewriteRule ^intern/(.*) costs-and-advances/$1
+RewriteRule ^intern/(.*) costs-and-advances-overview/$1
+RewriteRule ^intern/(.*) database-settings/$1
+RewriteRule ^intern/(.*) settings/$1
+RewriteRule ^intern/(.*) software-info/$1
+RewriteRule ^intern/(.*) statusandtrend/$1
+RewriteRule ^intern/(.*) statusandtrend-overview/$1
+RewriteRule ^intern/(.*) user-settings/$1
+
+RewriteBase /
+Options -Indexes
+DirectoryIndex site.php site.html
+
+https://htaccess.madewithlove.be/
+
+
+Options +FollowSymLinks -MultiViews -Indexes
+IndexIgnore * # prevent directory listing
+
+Order deny,allow
+Allow from *
+
+DirectorySlash Off
+
+# ------------------------------------------
+# Rewrite so that php extentions are not shown
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+RewriteBase /
+Options -Indexes
+DirectoryIndex entry.php
+
+
+---------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+RewriteBase /
+Options -Indexes
+DirectoryIndex entry.php
+
+-----
+-- my version -- not working
+RewriteCond %{REQUEST_URL} !-f
+RewriteCond %{REQUEST_URL} !-d
+RewriteRule entry/entry.php intern/entry.php

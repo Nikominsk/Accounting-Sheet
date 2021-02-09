@@ -1,0 +1,16 @@
+Projektname
+Accounting-Sheet
+
+Projekt-ID
+accounting-sheet
+
+Projektnummer
+366280318173 
+
+login
+
+clientid:
+366280318173-ddpb1h6ipv50thvummafk0uisa6nvjv2.apps.googleusercontent.com
+
+client secret:
+5_qBBSyobGgbacgZroanPTCC

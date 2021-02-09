@@ -1,0 +1,431 @@
+hr {
+
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid var(--tertiary-color);
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 25px;
+    padding: 0;
+
+}
+
+h3 {
+    padding: 20px;
+}
+
+h5 {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-bottom: 15px;
+
+}
+
+select:focus, .inputs:focus  {
+    box-shadow: 0 0 5px var(--focus-color);
+}
+
+
+/* TABLE-FORM */
+
+table.form td {
+    border: 1px solid white;
+    padding: 5px;
+    width: 300px;
+    height: auto;
+}
+
+table.form td {
+    text-align: left;
+}
+
+table.form tr {
+    background-color: white;
+}
+
+table.form input, table.form select, .modal-window input, .modal-window select {
+    width: 170px;
+    background-color: white;
+    border: 1px solid var(--secondary-color);
+    padding: 8px;
+}
+
+table.form input[type='button'], table.form input[type='submit'], .modal-window input[type='button'], .button-refresh {
+    width: auto;
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 3px;
+    padding: 6px 8px;
+    font-size: 15px;
+}
+
+/* TABLE-SHOWCASE */
+
+.table-settings-bar {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid rgb(170, 189, 207);
+}
+
+.table-settings-bar .spacer {
+    flex: 1;
+}
+
+.table-settings-bar .right-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.table-settings-bar .right-div > * {
+    margin: 0 5px;
+}
+
+.table-settings-bar .right-div input,
+.table-settings-bar .right-div select {
+    padding: 5px;
+    outline: none;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+}
+
+.table-settings-bar .right-div input,
+.table-settings-bar .right-div select,
+.table-settings-bar .right-div button {
+    font-size: 15px;
+}
+
+.table-settings-bar .right-div button {
+    background-color: var(--secondary-color);
+}
+
+.table-settings-bar .right-div .filter-inputs-container {
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-settings-bar .right-div .filter-inputs-container span {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+
+.table-settings-bar .right-div .filter-inputs-container span input {
+    margin-left: 5px;
+}
+
+
+
+.table-box {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.table-showcase {
+    position: relative;
+    height: auto;
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: collapse;
+
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.table-showcase th, .table-showcase td {
+    padding: 5px;
+    word-break: break-all;
+}
+
+.table-showcase tr td{
+    border: 1px solid white;
+}
+
+.table-showcase thead, .table-showcase tbody tr {
+    display:table;
+    width: 100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+
+.table-showcase thead {
+    font-size: 1.2em;
+    width: calc(100% - 18px);
+}
+
+.table-showcase thead tr th div {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.table-showcase thead tr th div span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    user-select: none;
+}
+
+.table-showcase thead tr th div .content {
+    padding-right: 5px;
+}
+
+.table-showcase thead tr th div .sorting-img {
+    width: 24px;
+    background-repeat: no-repeat;
+    background-position: center left;
+    cursor: pointer;
+}
+
+.sorting_both {
+    background-image: url("./img/datatable/sort_both.png");
+}
+.sorting_asc {
+    background-image: url("./img/datatable/sort_asc.png");
+}
+.sorting_desc {
+    background-image: url("./img/datatable/sort_desc.png");
+}
+
+
+
+.table-showcase tbody {
+    display:block;
+    max-height: 500px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.table-showcase tbody tr:nth-child(2n){
+    background-color: var(--tertiary-color);
+}
+
+.table-showcase tbody tr:hover {
+    background-color: var(--hover-color);
+}
+
+.radio-icon-item{
+    display: none !important; /* radio gets overwritten by icon */
+ }
+
+ .radio-icon-item:checked + label {
+     color: var(--secondary-color);
+ }
+
+.arrow {
+    padding: 5px 3px;
+    font-size: 20px;
+    color: #6EB5C0;
+    cursor: pointer;
+}
+
+section {
+    height: auto;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+section > div {
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+
+.filter-box div {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-box .filter-item {
+    font-size: 0.8em;
+    white-space: nowrap;
+    margin: 5px;
+    padding: 3px 5px;
+    background-color: rgb(230, 230, 230);
+    border: 1px solid rgb(102, 102, 102) !important;
+    border-radius: 3px;
+}
+
+.filter-box .filter-item .option-remove {
+    padding-left: 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: red;
+    cursor: pointer;
+}
+
+.filter-label {
+    width: auto;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+
+/* MODAL-WINDOWS */
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top (Layer)*/
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-window {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 85%;
+    max-width: 400px;
+    height: auto;
+
+    font-size: var(--default-font-size);
+}
+
+#modal-window-filter-cost, #modal-window-filter-advance,
+#modal-window-filter-all-cost, #modal-window-filter-all-advance,
+#modal-window-filter-status-each-user, #modal-window-filter-cost-chart, #modal-window-filter-trend-chart,
+#modal-window-filter-visualisation-each-user {
+    display: none;
+}
+
+#editor-window-cost, #editor-window-advance, #editor-window-all-cost, #editor-window-all-advance {
+    display: none;
+}
+
+.modal-window table {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.modal-window table td {
+    padding: 5px;
+}
+
+.modal-window p {
+    padding: 5px;
+    margin: 5px;
+}
+
+/* algin right */
+.modal-window input, .modal-window select {
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+
+    font-size: var(--default-font-size);
+}
+
+.modal-inline-button {
+    text-align: right;
+    width: 90%;
+}
+
+.modal-inline-button input[type="button"] {
+    display: inline-block;
+    margin: 5px;
+}
+
+/* STATUS */
+.status-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.status-table tr th {
+    padding: 10px 0;
+}
+
+/* START ALERT */
+
+.alert {
+    display: none;
+
+    position: fixed;
+    width: 200px;
+    left: 0;
+    right: 0;
+    top: 90px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 10px 10px 15px 10px;
+
+    background-color: white;
+    box-shadow:0px 1px 5px #999;
+    border-radius: 2px;
+
+    font-size: 1.5em;
+    text-align: center;
+
+    z-index: 9999;
+}
+
+.alert-success {
+    color: #017507;
+}
+
+.alert-failure {
+    color: red;
+}
+
+/* END ALERT */
+
+/* BUTTON EXPORT TO CSV */
+
+.button-export-to-csv {
+    width: auto;
+    border: none;
+    background-color: var(--button-export-to-csv-bg-color);
+    color: white;
+    border-radius: 3px;
+    padding: 6px 8px;
+    font-size: 15px;
+    float: right;
+}
+
+.button-export-to-csv:hover {
+    background-color: var(--hover-color);
+}
+
+/* END BUTTON EXPORT TO CSV */
+
+
+/* if screen is smaller than 767px */
+@media screen and (max-width: 767px) {
+    section {
+        width: 95%;
+    }
+}

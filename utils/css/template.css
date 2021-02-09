@@ -1,0 +1,490 @@
+:root {
+    --main-bg-color: #F4F4EF;
+
+    --header-height: 70px;
+    --header-bg-color: white;
+
+    --sidemenu-bg-color: #2A3132;
+    --sidemenu-font-size: calc(1em * 1vw);
+    --sidemenu-width: 19em;
+    --sidemenu-icon-nav-bar-width: 3em;
+
+    --secondary-color: #006C84;
+    --tertiary-color: #D5D6D2;
+
+    --hover-color: #FFCCBB;
+    --focus-color: #6EB5C0;
+
+    --light-font-color: #F4F4EF;
+
+    --default-font-family: Helvetica, Arial, sans-serif;
+    --default-font-size: calc(1em * 1vw);
+
+    --button-export-to-csv-bg-color: #D3D3DB;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--main-bg-color);
+    font-family: var(--default-font-family);
+    font-size: var(--default-font-size);
+
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box; /* I think it removes almost all margin and padding */
+}
+
+
+
+#wrapper {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+
+    /* The above is shorthand for:
+    flex-grow: 0,
+    flex-shrink: 1,
+    flex-basis: auto
+    */
+
+
+header {
+    min-height: var(--header-height);
+    max-height: var(--header-height);
+    width: 100%;
+
+    display: flex; /* establish flex container */
+    flex-direction: row; /* make main axis horizontal (default value) */
+
+    background-color: var(--header-bg-color);
+    border-bottom: 1px solid var(--secondary-color);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+header #sidemenu-opener {
+    order: 1;
+    width: auto;
+
+    align-self: center;
+
+    padding: 0 0.5em;
+}
+
+header #brand {
+    order: 2;
+    flex-grow: 1;
+
+    align-self: center;
+
+    text-align: left;
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+
+header #brand a {
+    text-decoration: none;
+
+    font-size: calc(1em + 1vw);
+    color: var(--secondary-color);
+    font-weight: bold;
+
+    letter-spacing: .1em;
+}
+
+header #profile {
+    order: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    white-space: nowrap;
+    padding: 0 5px;
+
+    text-align: right;
+    cursor: pointer;
+
+    overflow: auto;
+    scrollbar-width: thin;
+}
+
+
+header #profile div {
+    display: inline-block;
+    height: auto;
+}
+
+header #profile div #profile-pic-wrapper {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+header #profile-pic-wrapper img {
+    width: 100%;
+    height: 100%;
+}
+
+
+header #profile #profile-menu {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 80px;
+
+    padding: 5px 10px;
+
+    background-color: white;
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    min-width: 160px;
+    max-width: 500px;
+    z-index: 1;
+
+    font-size: 14px;
+    text-align: center;
+}
+
+header #profile #profile-menu a {
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+}
+
+header #profile #profile-menu #logout-label {
+    border-top: 1px solid lightgray;
+    color: #da0b0b;
+}
+
+header #profile #profile-menu #label-signed-name {
+    display: none;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+
+    padding: 10px;
+
+    overflow: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+
+}
+
+header #profile #profile-menu #label-response-username {
+    font-weight: 600;
+}
+
+
+
+main {
+    position: relative; /* for preventing sidemenu to fill full screen (sidemenu gets absolute positioned if user uses smartphone) */
+    display: flex;
+    flex-direction: row;
+
+    flex: 1 1 auto; /* fill remaining height */
+    overflow: hidden;
+}
+
+
+#sidemenu {
+    order: 1;
+
+    flex-grow: 0;     /* do not grow   - initial value: 0 */
+    flex-shrink: 0;   /* do not shrink - initial value: 1 */
+
+    /* for ul and collapse icon */
+    display: flex;
+    flex-direction: row;
+
+    height: 100%;
+
+    background-color: var(--sidemenu-bg-color);
+
+    font-size: var(--sidemenu-font-size);
+    text-align: left;
+    white-space:nowrap;
+
+    z-index: 2;
+}
+
+#sidemenu #nav-elements-wrapper {
+    order: 1;   /* elements on the left of sidemenu */
+
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1; /* if possible expand */
+
+    overflow: auto;
+    scrollbar-width: thin;
+}
+
+#sidemenu #nav-elements-top {
+    order: 1;
+    flex-grow: 1; /* pushes .nav-elements-bottom down */
+}
+
+#sidemenu #nav-elements-bottom {
+
+    order: 2;
+
+}
+
+#sidemenu ul {
+    list-style-type: none;
+    line-height: 4em;
+
+    padding-left: 1em;
+}
+
+
+#sidemenu a {
+    text-decoration: none;
+    color: var(--light-font-color);
+}
+
+#sidemenu #icon-nav-bar {
+    order: 2;   /* icon on the right of menu */
+    flex-basis: var(--sidemenu-icon-nav-bar-width);
+
+    /* center icon*/
+    display: flex;
+    align-items: center;    /* vertical */
+    justify-content: center; /* horizontal */
+
+    color: var(--light-font-color);
+    padding: 0 10px;
+}
+
+#sidemenu #icon-nav-bar:hover {
+    cursor: pointer;
+}
+
+#sidemenu #sub-ul {
+    list-style-type: square;
+    margin-top: -1em;
+    line-height: 2em;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+/* animation for closing and expanding sidemenu */
+.expand {
+    overflow: hidden;       /* without overflow hidden -> animation is not smooth */
+    animation-name: expand;
+    animation-duration:0.5s;
+    animation-fill-mode: forwards;
+}
+
+.collapse {
+    animation-name: collapse;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+#content-wrapper {
+    order: 2;
+    display: block;
+
+    flex-grow: 1;
+
+    overflow: hidden;
+}
+
+content {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    box-sizing: unset;
+
+    padding-right: 17px; /* pushes scrolling bar outside view , (Increase/decrease this value for cross-browser compatibility) */
+
+    overflow-y: scroll;
+}
+
+
+/* used for tablets and desktops */
+@media (min-width: 767px) {
+
+    @keyframes expand {
+
+        0% {
+            flex-basis: var(--sidemenu-icon-nav-bar-width); /* starting width */
+        }
+
+        100% {
+            flex-basis: var(--sidemenu-width);
+        }
+
+    }
+
+    @keyframes collapse {
+
+        0% {
+            flex-basis: var(--sidemenu-width);
+        }
+
+        100% {
+            flex-basis: var(--sidemenu-icon-nav-bar-width); /* width after collapsed */
+        }
+
+    }
+
+    /* behaves like a browser resize listener */
+    .expand {
+        flex-basis: var(--sidemenu-width);
+    }
+
+    .collapse {
+        flex-basis: var(--sidemenu-icon-nav-bar-width);
+    }
+
+}
+
+/* if screen is smaller than 767px */
+@media screen and (max-width: 767px) {
+
+    header {
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+
+
+    header #brand {
+        text-align: center;
+    }
+
+    header .icon-nav {
+        display: block;
+    }
+
+    header #profile #profile-menu #label-signed-name {
+        display: block;
+    }
+
+    header #label-username {
+        display: none;
+    }
+
+    header #profile #profile-menu {
+        top: 80px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+
+    header #profile #profile-menu a {
+        padding: 15px;
+    }
+
+    #sidemenu {
+        /* fills full screen except header */
+        position: absolute;
+        overflow: hidden;   /* otherwise nav-bar still there when collapse */
+        z-index: 4;
+    }
+
+    @keyframes expand {
+
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%; /* width after expand */
+        }
+
+    }
+
+    @keyframes collapse {
+
+        0% {
+            width: 100%;
+        }
+
+        100% {
+            width: 0%; /* width after collapsed */
+        }
+    }
+
+
+    /* behaves like a browser resize listener */
+    .expand {
+        width: 100%;
+    }
+
+    .collapse {
+        width: 0%;
+    }
+
+}
+
+@media screen and (max-height: 600px) {
+
+    #sidemenu ul {
+        line-height: 270%;
+    }
+
+}
+
+@media screen and (max-height: 400px) {
+
+    #sidemenu ul {
+        line-height: 2.2em;
+    }
+
+}
+
+
+
+/* ICONS */
+
+.icon-user {
+    display: inline-block;
+
+    width: 20px;
+    height: 20px !important;
+
+    transform: translateY(17%);
+
+    background: url("https://img.icons8.com/ios-glyphs/30/000000/person-male.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center 2px;
+
+    margin-left: 5px;
+
+}
+
+.icon-nav {
+    display: none;
+    color: var(--sidemenu-bg-color);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+

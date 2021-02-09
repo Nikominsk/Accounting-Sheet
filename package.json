@@ -1,0 +1,26 @@
+{
+  "name": "accounting",
+  "version": "1.0.0",
+  "description": "\"# Accounting-Sheet\"",
+  "main": "index.js",
+  "dependencies": {
+    "datatables.net": "^1.10.23",
+    "datatables.net-dt": "^1.10.23",
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikominsk/Accounting-Sheet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nikominsk/Accounting-Sheet/issues"
+  },
+  "homepage": "https://github.com/Nikominsk/Accounting-Sheet#readme"
+}
