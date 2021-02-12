@@ -1,92 +1,48 @@
-var curCostSelectedOrderElem = null;
-var curCostSortingString = null;
+class CostTable {
 
-var startDate = "", endDate = "";
-var startPrice = "", endPrice = "";
-var descriptions = ['ignore'];
-var categorieIds = ['ignore'];
-var userIds = ['ignore'];
-var sortBy = "costId ASC";
+    constructor(costTableSorting, costTableFilter) {
+        this.sorting = costTableSorting;
+        this.filter = costTableFilter;
+    }
 
-function setCurCostSorting(sortBy) {
-    curCostSortingString = sortBy;
-}
+    sort(documentId, documentName) {
+        let sortingType = this.sorting.handleCostSortingImg($("#section-all-costs #" + documentId + " .sorting-img"));
+        this.sorting.sortingString = documentName + " " + sortingType;
+        this.refresh();
+    }
 
-function addFilterDescription(desc) {
-    descriptions.push(desc);
-    refreshCostTable();
-}
+    addFilter(itemType) {
+        if(this.filter.addFilter(itemType)) this.refresh();
+    }
 
-function removeFilterDescription(desc) {
-    descriptions = descriptions.filter(e => e !== desc);
-    refreshCostTable();
-}
+    removeFilter(nameId){
+        this.filter.removeFilter(nameId);
+        this.refresh();
+    }
 
-function addFilterUserId(userId) {
-    userIds.push(userId);
-    refreshCostTable();
-}
-
-function removeFilterUserId(userId) {
-    userIds = userIds.filter(e => e !== userId);
-    refreshCostTable();
-}
-
-function addFilterCategoryId(categId) {
-    categorieIds.push(categId);
-    refreshCostTable();
-}
-
-function removeFilterCategoryId(categId) {
-    categorieIds = categorieIds.filter(e => e !== categId);
-    refreshCostTable();
-}
-
-function setFilterDate(start, end) {
-    startDate = start;
-    endDate = end;
-    refreshCostTable();
-}
-
-function removeFilterDate() {
-    startDate = "";
-    endDate = "";
-    refreshCostTable();
-}
-
-function setFilterAmount(start, end) {
-    startPrice = start;
-    endPrice = end;
-    refreshCostTable();
-}
-
-function removeFilterAmount() {
-    startPrice = "";
-    endPrice = "";
-    refreshCostTable();
-}
-
-function refreshCostTable() {
-
-    //refresh cost-table
-    $("#section-all-costs .table-tbody-costs").load("../costs-and-advances-overview/scripts/php/cost/load/cost-table.php", {
-            //send data to php file
-            descriptions: descriptions,
-            userIds: userIds,
-            categoryIds: categorieIds,
-            startPrice: startPrice,
-            endPrice: endPrice,
-            startDate: startDate,
-            endDate: endDate,
-            sortBy: curCostSortingString
-
-    }, function() {
-
-        //prevent loading php before jquery
-        $("#section-all-costs .total-costs").load("../costs-and-advances-overview/scripts/php/cost/load/cost-total.php");
-
-    });
-
-    $("#section-all-costs .button-refresh").val("🗘");
+    refresh() {
+        
+        //refresh cost-table
+        $("#section-all-costs .table-tbody-costs").load("../costs-and-advances-overview/scripts/php/cost/load/cost-table.php", {
+                //send data to php file
+                userIds: this.filter.userIds,
+                descriptions: this.filter.descriptions,
+                categoryIds: this.filter.categoryIds,
+                startPrice: this.filter.startPrice,
+                endPrice: this.filter.endPrice,
+                startDate: this.filter.startDate,
+                endDate: this.filter.endDate,
+                orderBy: this.sorting.sortingString
+    
+        }, function() {
+    
+            //prevent loading php before jquery
+            $("#section-all-costs .total-costs").load("../costs-and-advances-overview/scripts/php/cost/load/cost-total.php");
+    
+        });
+    
+        $("#section-all-costs .button-refresh").val("🗘");
+    
+    }
 
 }

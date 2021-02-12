@@ -92,7 +92,7 @@ class AdvanceTableFilter {
         switch (itemType) {
             case "date":
                 this.startDate = value[0];
-                this.endAdvance = value[1];
+                this.endDate = value[1];
                 break;
             case "advance":
                 this.startAdvance = value[0];
@@ -114,6 +114,12 @@ class AdvanceTableFilter {
                 var startDate =  $('#section-advance .right-div .filter-inputs-container span:first-child input[type="date"]').val().replace(/-/g, '.');
                 var endDate =  $('#section-advance .right-div .filter-inputs-container span:last-child input[type="date"]').val().replace(/-/g, '.');
 
+                if(startDate > endDate) {
+                    var tmp = endDate;
+                    endDate = startDate;
+                    startDate = tmp;
+                }
+
                 value = [startDate, endDate];
 
                 if($('#section-advance .filter-box .date-item').length != 0) {
@@ -133,13 +139,19 @@ class AdvanceTableFilter {
                 var startAdvance =  $('#section-advance .right-div .filter-inputs-container span:first-child input[type="text"]').val().trim();
                 var endAdvance =  $('#section-advance .right-div .filter-inputs-container span:last-child input[type="text"]').val().trim();
 
+                if(startAdvance > endAdvance) {
+                    var tmp = startAdvance;
+                    startAdvance = endAdvance;
+                    endAdvance = tmp;
+                }
+
                 value = [startAdvance, endAdvance];
 
                 startAdvance = parseInt(startAdvance);
                 endAdvance = parseInt(endAdvance);
 
-                if(isNaN(startAdvance) || isNaN(endAdvance)|| startAdvance < 0 || endAdvance < 0 || startAdvance > endAdvance) {
-                    alertFailure("Both numbers must be greater than 0 and the 2th input must be greater than 1th input.")
+                if(isNaN(startAdvance) || isNaN(endAdvance)|| startAdvance < 0 || endAdvance < 0) {
+                    alertFailure("Both numbers must be greater than 0.")
                     htmlString = "";
                     break;
                 }
@@ -160,10 +172,10 @@ class AdvanceTableFilter {
         }
 
         if(htmlString == "") {
-            return false;
+            return null;
         }
 
-        htmlString += '<span class = "option-remove">[-]</span></span>';
+        htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 
         //append item
         $('#section-advance .filter-box .filter-container').append(htmlString);

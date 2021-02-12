@@ -6,13 +6,13 @@
 
     //save received data into variables
     $descriptions = $_POST['descriptions'];
+    $categoryIds = $_POST['categoryIds'];
+    $userIds = $_POST['userIds'];
     $startPrice = $_POST['startPrice'];
     $endPrice = $_POST['endPrice'];
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
-    $userIds = $_POST['userIds'];
-    $categoryIds = $_POST['categoryIds'];
-    $orderBy = $_POST['sortBy'];
+    $orderBy = $_POST['orderBy'];
 
     $numberFormat = $user->getNumberFormat();
     $dateFormat = getDateFormat($numberFormat);

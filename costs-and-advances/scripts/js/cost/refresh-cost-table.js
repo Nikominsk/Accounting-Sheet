@@ -1,12 +1,12 @@
 class CostTable {
 
-    constructor(advanceTableSorting, advanceTableFilter) {
-        this.sorting = advanceTableSorting;
-        this.filter = advanceTableFilter;
+    constructor(costTableSorting, costTableFilter) {
+        this.sorting = costTableSorting;
+        this.filter = costTableFilter;
     }
 
     sort(documentId, documentName) {
-        let sortingType = this.sorting.handleAdvanceSortingImg($("#section-costs #" + documentId + " .sorting-img"));
+        let sortingType = this.sorting.handleCostSortingImg($("#section-costs #" + documentId + " .sorting-img"));
         this.sorting.sortingString = documentName + " " + sortingType;
         this.refresh();
     }

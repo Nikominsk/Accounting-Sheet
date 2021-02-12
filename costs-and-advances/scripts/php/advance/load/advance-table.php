@@ -18,7 +18,6 @@
     $numberFormat = $user->getNumberFormat();
     $dateFormat = getDateFormat($numberFormat);
 
-
     $sql = "SELECT advanceId, DATE_FORMAT(date, '$dateFormat') as date, advance FROM advance, user WHERE advance.userId = user.userId AND user.userId = '$userId'";
 
     if($startAdvance != "" && $endAdvance != "")
@@ -29,9 +28,6 @@
         $sql .= " AND date BETWEEN '$startDate' AND '$endDate'";
 
     $sql .= " ORDER BY $orderBy";
-
-    echo $sql;
-    return;
 
     //execute sql code
     $result = $db->query($sql);

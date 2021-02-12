@@ -44,6 +44,7 @@
     <script src = "../statusandtrend-overview/scripts/js/onload/onload.js"></script>
     <script src = "../statusandtrend-overview/scripts/js/status/refresh-status.js"></script>
 
+    <script src="../statusandtrend-overview/scripts/js/status-each-user/filter-status-each-user-table.js"></script>
     <script src="../statusandtrend-overview/scripts/js/status-each-user/refresh-status-each-user-table.js"></script>
     <script src="../statusandtrend-overview/scripts/js/visualisation-each-user/refresh-visualisation-each-user-table.js"></script>
 

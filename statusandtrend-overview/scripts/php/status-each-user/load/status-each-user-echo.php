@@ -4,7 +4,7 @@
     include '../../../../../utils/php/NumberFormat.php';
 
     
-    $filterUserIds = $_POST['filterUserIds'];
+    $userIds = $_POST['userIds'];
     $orderBy = $_POST['orderBy'];
 
     //save sended data
@@ -20,22 +20,24 @@
                     IFNULL((SELECT SUM(advance) FROM advance WHERE advance.userId = user.userId AND year(date) < '$curDateYear'), 0) AS prevAdvance
                     FROM user";
 
-    if($filterUserIds[0] !== 'ALL') {
+    if(count($userIds) >= 2) {
+        if($userIds[1] !== 'ALL') {
 
-        if($filterUserIds[0] === 'ONLYACTIVES') {
-            $sql .= " WHERE active = 1";
-        } else if ($filterUserIds[0] === 'ONLYINACTIVES') {
-            $sql .= " WHERE active = 0";
-        } else {
-            $sql .= " WHERE (userId = '$filterUserIds[0]'";
+            if($userIds[1] === 'ONLYACTIVES') {
+                $sql .= " WHERE active = 1";
+            } else if ($userIds[1] === 'ONLYINACTIVES') {
+                $sql .= " WHERE active = 0";
+            } else {
+                $sql .= " WHERE (userId = '$userIds[1]'";
 
-            for ($i = 1; $i < count($filterUserIds); $i++) {
-                $sql .= " OR userId = '$filterUserIds[$i]'";
+                for ($i = 1; $i < count($userIds); $i++) {
+                    $sql .= " OR userId = '$userIds[$i]'";
+                }
+
+                $sql .= ")";
             }
 
-            $sql .= ")";
         }
-
     }
                     
     $sql .= " GROUP BY username ORDER BY ". $orderBy;

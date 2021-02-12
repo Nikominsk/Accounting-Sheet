@@ -162,6 +162,12 @@ class AdvanceTableFilter {
                 var startDate =  $('#section-all-advances .right-div .filter-inputs-container span:first-child input[type="date"]').val().replace(/-/g, '.');
                 var endDate =  $('#section-all-advances .right-div .filter-inputs-container span:last-child input[type="date"]').val().replace(/-/g, '.');
 
+                if(startDate > endDate) {
+                    var tmp = endDate;
+                    endDate = startDate;
+                    startDate = tmp;
+                }
+
                 value = [startDate, endDate];
 
                 if($('#section-all-advances .filter-box .date-item').length != 0) {
@@ -181,13 +187,19 @@ class AdvanceTableFilter {
                 var startAdvance =  $('#section-all-advances .right-div .filter-inputs-container span:first-child input[type="text"]').val().trim();
                 var endAdvance =  $('#section-all-advances .right-div .filter-inputs-container span:last-child input[type="text"]').val().trim();
 
+                if(startAdvance > endAdvance) {
+                    var tmp = startAdvance;
+                    startAdvance = endAdvance;
+                    endAdvance = tmp;
+                }
+
                 value = [startAdvance, endAdvance];
 
                 startAdvance = parseInt(startAdvance);
                 endAdvance = parseInt(endAdvance);
 
-                if(isNaN(startAdvance) || isNaN(endAdvance)|| startAdvance < 0 || endAdvance < 0 || startAdvance > endAdvance) {
-                    alertFailure("Both numbers must be greater than 0 and the 2th input must be greater than 1th input.")
+                if(isNaN(startAdvance) || isNaN(endAdvance)|| startAdvance < 0 || endAdvance < 0) {
+                    alertFailure("Both numbers must be greater than 0.")
                     htmlString = "";
                     break;
                 }
@@ -211,7 +223,7 @@ class AdvanceTableFilter {
             return false;
         }
 
-        htmlString += '<span class = "option-remove">[-]</span></span>';
+        htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 
         //append item
         $('#section-all-advances .filter-box .filter-container').append(htmlString);
@@ -226,7 +238,6 @@ class AdvanceTableFilter {
 
         var splitted = nameId.split('-');
 
-        //type
         switch (splitted[0]) {
             case "username":
                 this.userIds = this.userIds.filter(e => e !== splitted[1]);

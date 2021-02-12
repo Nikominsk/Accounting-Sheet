@@ -24,12 +24,32 @@
                         <h5>Stand der Mitarbeiter</h5>
 
                         <div class = "filter-box">
-                            <p><span class = "filter-label">Filter</span></p>
+                            <p><span class = "filter-label">Filter:</span></p>
+                            <div class = "filter-container">
 
-                            <p><span class = "underline">Benutzer:</span> <div class = "filter-username"><?php echo $lang[$user->getLanguage()]["OnlyActiveUser"]; ?></div></p>
+                            </div></p>
+                        </div>
 
-                             <!-- Refresh-button -->
-                             <p><input type="button" class="button-refresh" id="button-refresh" value="Laden"></p>
+                        <div class = "table-settings-bar">
+
+                            <div>
+                            <!-- Refresh-button -->
+                            <input type="button" class="button-refresh" value="Laden">
+                            </div>
+
+                            <div class = "spacer">
+                            </div>
+
+                            <div class = "right-div">
+                                <label for="filter-options">Filter: </label>
+                                <select name="filter-options" id="filter-options">
+                                    <option value="username">Name</option>
+                                </select>
+                                <div class = "filter-content-container">
+
+                                </div>
+                                <input type = "button" class = "add-filter-item-button" value = "Ok">
+                            </div>
                         </div>
 
                         <div class = "table-box">
@@ -39,12 +59,11 @@
                                 <thead>
                                     <tr>
 
-                                        <th>Name
-                                            <input type="radio" class= "radio-icon-item" value="username DESC" name="status-each-user-order" id="s-radio1" checked>
-                                            <label class="label-icon-item arrow" for="s-radio1"> &#8593; </label>
-
-                                            <input type="radio" class= "radio-icon-item" value="username ASC" name="status-each-user-order" id="s-radio2">
-                                            <label class="label-icon-item arrow" for="s-radio2"> &#8595; </label>
+                                        <th>
+                                            <div id = "username-div" name = "username">
+                                                <span class = "content">Name</span>
+                                                <span class = "sorting-img sorting_asc"></span>
+                                            </div>
                                         </th>
 
                                         <th>Aktueller Stand</th>

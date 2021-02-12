@@ -146,6 +146,7 @@ class CostTableFilter {
             case "description":
 
                 value = $('#section-costs .filter-content-container input').val().trim();
+                value = value.toLocaleLowerCase();
 
                 if(value == '') {
                     alertFailure('The input must be filled');
@@ -157,7 +158,7 @@ class CostTableFilter {
 
                 //check if category already exists
                 $('#section-costs .filter-box .description-item').each(function( index ) {
-                    if($( this ).text().indexOf(value) != -1) {
+                    if($( this ).text().toLocaleLowerCase().indexOf(value) != -1) {
                         alertFailure('Already exists');
                         htmlString = "";
                         return;
@@ -193,13 +194,20 @@ class CostTableFilter {
                 var startPrice =  $('#section-costs .right-div .filter-inputs-container span:first-child input[type="text"]').val().trim();
                 var endPrice =  $('#section-costs .right-div .filter-inputs-container span:last-child input[type="text"]').val().trim();
 
+
+                if(startPrice > endPrice) {
+                    var tmp = startPrice;
+                    startPrice = endPrice;
+                    endPrice = tmp;
+                }
+
                 value = [startPrice, endPrice];
 
                 startPrice = parseInt(startPrice);
                 endPrice = parseInt(endPrice);
 
-                if(isNaN(startPrice) || isNaN(endPrice)|| startPrice < 0 || endPrice < 0 || startPrice > endPrice) {
-                    alertFailure("Both numbers must be greater than 0 and the 2th input must be greater than 1th input.")
+                if(isNaN(startPrice) || isNaN(endPrice)|| startPrice < 0 || endPrice < 0) {
+                    alertFailure("Both numbers must be greater than 0.")
                     htmlString = "";
                     break;
                 }
@@ -223,6 +231,12 @@ class CostTableFilter {
                 var startDate =  $('#section-costs .right-div .filter-inputs-container span:first-child input[type="date"]').val().replace(/-/g, '.');
                 var endDate = $('#section-costs .right-div .filter-inputs-container span:last-child input[type="date"]').val().replace(/-/g, '.');
 
+                if(startDate > endDate) {
+                    var tmp = endDate;
+                    endDate = startDate;
+                    startDate = tmp;
+                }
+
                 value = [startDate, endDate];
 
                 if($('#section-costs .filter-box .date-item').length != 0) {
@@ -244,7 +258,7 @@ class CostTableFilter {
             return null;
         }
 
-        htmlString += '<span class = "option-remove">[-]</span></span>';
+        htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 
         //append item
         $('#section-costs .filter-box .filter-container').append(htmlString);
@@ -259,7 +273,6 @@ class CostTableFilter {
 
         var splitted = nameId.split('-');
 
-        //type
         switch (splitted[0]) {
             case "description":
                 this.descriptions = this.descriptions.filter(e => e !== splitted[1]);
