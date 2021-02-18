@@ -16,11 +16,10 @@ class StatusTable {
     }
 
     removeFilter(nameId){
-        console.log('remove filter3: ' + nameId);
         this.filter.removeFilter(nameId);
         this.refresh();
     }
-    
+
     refresh() {
 
         var filterUserIds;

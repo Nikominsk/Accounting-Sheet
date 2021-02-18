@@ -9,7 +9,7 @@
     );
 
     $monthsBack = $_POST['monthsBack'];
-    $filterUserIds = $_POST['filterUserIds'];
+    $userIds = $_POST['userIds'];
 
     //first get the users state n (= $monthsBack) - 1 month ago
     $sql = "SELECT  username,
@@ -17,23 +17,26 @@
                     IFNULL((SELECT SUM(advance) FROM advance WHERE advance.userId = user.userId AND date <  CAST(DATE_FORMAT(NOW()-INTERVAL '$monthsBack' MONTH ,'%Y-%m-01') as DATE)), 0) AS pastAdvance
                     FROM user WHERE username IS NOT NULL";
 
-    if($filterUserIds[0] !== 'ALL') {
+    $tmpSQL = "";
+    if(count($userIds) >= 2) {
 
-        if($filterUserIds[0] === 'ONLYACTIVES') {
-            $sql .= " AND user.active = 1";
-        } else if ($filterUserIds[0] === 'ONLYINACTIVES') {
-            $sql .= " AND user.active = 0";
+        if($userIds[1] === 'ONLYACTIVES') {
+            $tmpSQL .= " AND user.active = 1";
+        } else if ($userIds[1] === 'ONLYINACTIVES') {
+            $tmpSQL .= " AND user.active = 0";
         } else {
-            $sql .= " AND (user.userId = '$filterUserIds[0]'";
+            $tmpSQL .= " AND (user.userId = '$userIds[1]'";
 
-            for ($i = 1; $i < count($filterUserIds); $i++) {
-                $sql .= " OR user.userId = '$filterUserIds[$i]'";
+            for ($i = 1; $i < count($userIds); $i++) {
+                $tmpSQL .= " OR user.userId = '$userIds[$i]'";
             }
 
-            $sql .= ")";
+            $tmpSQL .= ")";
         }
 
+        $sql .= $tmpSQL;
     }
+
 
     $sql .= " ORDER BY username";
 
@@ -52,7 +55,7 @@
 
     $monthLabelArray = $langMonth[$user->getLanguage()];
 
-    
+
     $costsEachMonthPerUser = [];
     //getting costs each month in interval
     //group and order by year is important
@@ -60,23 +63,9 @@
             FROM user, cost c
             WHERE user.userId = c.userId";
 
-    if($filterUserIds[0] !== 'ALL') {
-
-        if($filterUserIds[0] === 'ONLYACTIVES') {
-            $sql .= " AND user.active = 1";
-        } else if ($filterUserIds[0] === 'ONLYINACTIVES') {
-            $sql .= " AND user.active = 0";
-        } else {
-            $sql .= " AND (user.userId = '$filterUserIds[0]'";
-
-            for ($i = 1; $i < count($filterUserIds); $i++) {
-                $sql .= " OR user.userId = '$filterUserIds[$i]'";
-            }
-
-            $sql .= ")";
-        }
-
-    }         
+    if(count($userIds) >= 2) {
+        $sql .= $tmpSQL;
+    }
 
     $sql .= " AND LAST_DAY(c.date - INTERVAL 1 MONTH) + INTERVAL 1 DAY >= CAST(DATE_FORMAT(NOW()-INTERVAL '$monthsBack' MONTH ,'%Y-%m-01') as DATE)
             AND LAST_DAY(c.date) <= LAST_DAY(NOW())
@@ -88,7 +77,7 @@
 
     //run though data of result
     while($row = mysqli_fetch_assoc($result)) {
-        //add each data to array        
+        //add each data to array
         $costsEachMonthPerUser[$row['username']][$row['year'] . $row['monthId']] = $row['cost'];
     }
 
@@ -98,22 +87,8 @@
             FROM user, advance a
             WHERE user.userId = a.userId";
 
-    if($filterUserIds[0] !== 'ALL') {
-
-        if($filterUserIds[0] === 'ONLYACTIVES') {
-            $sql .= " AND user.active = 1";
-        } else if ($filterUserIds[0] === 'ONLYINACTIVES') {
-            $sql .= " AND user.active = 0";
-        } else {
-            $sql .= " AND (user.userId = '$filterUserIds[0]'";
-
-            for ($i = 1; $i < count($filterUserIds); $i++) {
-                $sql .= " OR user.userId = '$filterUserIds[$i]'";
-            }
-
-            $sql .= ")";
-        }
-
+    if(count($userIds) >= 2) {
+        $sql .= $tmpSQL;
     }
 
     $sql .= " AND LAST_DAY(a.date - INTERVAL 1 MONTH) + INTERVAL 1 DAY >= CAST(DATE_FORMAT(NOW()-INTERVAL '$monthsBack' MONTH ,'%Y-%m-01') as DATE)
@@ -126,7 +101,7 @@
 
     //run though data of result
     while($row = mysqli_fetch_assoc($result)) {
-        //add each data to array       
+        //add each data to array
         $advanceEachMonthPerUser[$row['username']][$row['year'] . $row['monthId']] = $row['advance'];
     }
 
@@ -168,7 +143,7 @@
                 $advanceValue = 0;
             }
 
-            
+
             $tmpState = $tmpState + $advanceValue - $costValue;
 
             array_push($monthIds, $tmpMonthId);
@@ -176,7 +151,7 @@
             array_push($states, $tmpState);
 
             $tmpMonthId++;
-        
+
             $tmpMonthId %= 12;
 
             if($tmpMonthId == 0) {

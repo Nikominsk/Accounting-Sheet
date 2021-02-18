@@ -1,5 +1,5 @@
 
-class StatusTableSorting {
+class VisTableSorting {
 
     constructor(selectedOrderElement, sortingString) {
         this.selectedOrderElement = selectedOrderElement;
@@ -39,10 +39,12 @@ class StatusTableSorting {
 
 }
 
-class StatusTableFilter {
+class VisTableFilter {
 
     constructor() {
         this.userIds = ['ignore'];
+        this.trendDiagramMonthBackAmount = "6";
+        this.costPortionChartOfYears = [new Date().getFullYear()-1];
     }
 
     changeFilterInputs(type) {
@@ -51,7 +53,7 @@ class StatusTableFilter {
         switch(type) {
 
             case "username":
-                htmlString = '<select name ="username-select">';
+                htmlString = '<select>';
 
                 $.ajax({
                     url: "../statusandtrend-overview/scripts/php/status-each-user/utils/UserHTMLList.php",
@@ -70,9 +72,38 @@ class StatusTableFilter {
 
                 break;
 
+            case "trenddia":
+                htmlString = '<select>';
+
+                for(var i = 1; i < 15; i++) {
+                    if(i === 6) {
+                        htmlString += "<option selected>"+ i +"</option>";
+                    } else {
+                        htmlString += "<option>"+ i +"</option>";
+                    }
+                }
+
+                htmlString += "</select>";
+
+                break;
+
+            case "costdia":
+                //get current year
+                var curYear = new Date().getFullYear() - 4;
+
+                htmlString = '<select>';
+
+                for(var i = 0; i < 4; i++) {
+                    htmlString += "<option selected>"+ ++curYear +"</option>";
+                }
+
+                htmlString += "</select>";
+
+                break;
+
         }
 
-        $('#section-status-each-user .filter-content-container').html(htmlString);
+        $('#section-visualisation-each-user .filter-content-container').html(htmlString);
     }
 
     addFilter(itemType) {
@@ -98,15 +129,15 @@ class StatusTableFilter {
 
             case "username":
 
-                value = $('#section-status-each-user .filter-content-container select[name="username-select"] option:selected').text();
+                value = $('#section-visualisation-each-user.filter-content-container select[name="username-select"] option:selected').text();
 
                 //get ID of category
-                var userId = $('#section-status-each-user .filter-content-container select[name="username-select"] option:selected').val();
+                var userId = $('#section-visualisation-each-user.filter-content-container select[name="username-select"] option:selected').val();
 
                 htmlString += ' username-item" name = "username-' + userId + '">' + value;
 
                 //check if category already exists
-                $('#section-status-each-user .filter-box .username-item').each(function( index ) {
+                $('#section-visualisation-each-user.filter-box .username-item').each(function( index ) {
                     if($( this ).text().indexOf(value) != -1) {
                         alertFailure('Already exists');
                         htmlString = "";
@@ -117,6 +148,13 @@ class StatusTableFilter {
                 //value has to be the user id, its for the database
                 value = userId;
 
+                break;
+
+            case "trenddia":
+            case "costdia":
+                htmlString = '<input type = "number">';
+                break;
+
         }
 
         if(htmlString == "") {
@@ -126,10 +164,10 @@ class StatusTableFilter {
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 
         //append item
-        $('#section-status-each-user .filter-box .filter-container').append(htmlString);
+        $('#section-visualisation-each-user.filter-box .filter-container').append(htmlString);
 
         //set input value to '' again
-        $('#section-status-each-user .filter-content-container input[type="text"]').val('');
+        $('#section-visualisation-each-user.filter-content-container input[type="text"]').val('');
 
         return value;
     }
@@ -148,7 +186,7 @@ class StatusTableFilter {
     }
 
     removeFilterItem(nameId) {
-        $('#section-status-each-user .filter-box .filter-container .filter-item[name='+ nameId +']').remove();
+        $('#section-visualisation-each-user.filter-box .filter-container .filter-item[name='+ nameId +']').remove();
     }
 
 }

@@ -46,6 +46,7 @@
 
     <script src="../statusandtrend-overview/scripts/js/status-each-user/filter-status-each-user-table.js"></script>
     <script src="../statusandtrend-overview/scripts/js/status-each-user/refresh-status-each-user-table.js"></script>
+    <script src="../statusandtrend-overview/scripts/js/visualisation-each-user/filter-visualisation-each-user-table.js"></script>
     <script src="../statusandtrend-overview/scripts/js/visualisation-each-user/refresh-visualisation-each-user-table.js"></script>
 
     <!-- for appearing filter-modal-window -->

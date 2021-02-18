@@ -11,7 +11,7 @@
 
         function __construct() {
 
-            $this->serverName = 'localhost';
+            $this->serverName = 'localhost:3325';
             $this->userName = 'root';
             $this->password = '';
             $this->databaseName = 'accounting2';

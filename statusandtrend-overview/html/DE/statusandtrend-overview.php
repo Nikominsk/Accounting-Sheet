@@ -68,7 +68,7 @@
 
                                         <th>Aktueller Stand</th>
 
-                                        <th>Kosten</th>
+                                        <th>Kosten (dieses Jahr)</th>
 
                                         <th>Vorschuss</th>
 
@@ -101,18 +101,36 @@
 
                         <h5>Trend und Kosten-Aufteilung der Mitarbeiter</h5>
 
+
                         <div class = "filter-box">
-                            <p><span class = "filter-label">Filter</span></p>
+                            <p><span class = "filter-label">Filter:</span></p>
+                            <div class = "filter-container">
 
-                            <p><span class = "underline">Benutzer:</span> <div  class = "filter-username"><?php echo $lang[$user->getLanguage()]["OnlyActiveUser"]; ?></div></p>
+                            </div></p>
+                        </div>
 
-                            <p><span class = "underline">Trend-Diagramm Monat Intervall:</span> <div class = "months-back">/</div></p>
+                        <div class = "table-settings-bar">
 
-                            <p><span class = "underline">Kosten-Aufteilung-Diagramm von Jahr(en):</span> <div class = "filter-years">/</div></p>
+                            <div>
+                            <!-- Refresh-button -->
+                            <input type="button" class="button-refresh" value="Laden">
+                            </div>
 
+                            <div class = "spacer">
+                            </div>
 
-                             <!-- Refresh-button -->
-                             <p><input type="button" class="button-refresh" id="button-refresh" value="Laden"></p>
+                            <div class = "right-div">
+                                <label for="filter-options">Filter: </label>
+                                <select name="filter-options" id="filter-options">
+                                    <option value="username">Name</option>
+                                    <option value="trenddia">Trend-Diagramm Monat Intervall</option>
+                                    <option value="costdia">Kosten-Aufteilung-Diagramm von Jahr(en)</option>
+                                </select>
+                                <div class = "filter-content-container">
+
+                                </div>
+                                <input type = "button" class = "add-filter-item-button" value = "Ok">
+                            </div>
                         </div>
 
                         <div class = "table-box">
@@ -122,16 +140,11 @@
                                 <thead>
                                     <tr>
 
-                                        <th>Name
-                                            <!-- sorting elements -->
-
-                                            <!-- arrow up -->
-                                            <input type="radio" class= "radio-icon-item" value="username DESC" name="visualisation-each-user-order" id="v-radio1" checked>
-                                            <label class="label-icon-item arrow" for="v-radio1"> &#8593; </label>
-
-                                            <!-- arrow down -->
-                                            <input type="radio" class= "radio-icon-item" value="username ASC" name="visualisation-each-user-order" id="v-radio2">
-                                            <label class="label-icon-item arrow" for="v-radio2"> &#8595; </label>
+                                        <th>
+                                            <div id = "username-div" name = "username">
+                                                <span class = "content">Name</span>
+                                                <span class = "sorting-img sorting_asc"></span>
+                                            </div>
                                         </th>
 
                                         <th>Trend</th>
