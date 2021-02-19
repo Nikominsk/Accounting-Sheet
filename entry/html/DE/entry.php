@@ -57,7 +57,7 @@
                                 <tr>
                                     <td>Betrag</td>
                                     <td><input type = "text" class="inputs" autocomplete= "off" name = "input-amount"></td>
-                                    <td><input type = "button" value = "<?php echo 'hi' ?>" name = "button-save"></td>
+                                    <td><input type = "button" value = "Speichern" name = "button-save"></td>
                                 </tr>
                             </table>
                         </div>

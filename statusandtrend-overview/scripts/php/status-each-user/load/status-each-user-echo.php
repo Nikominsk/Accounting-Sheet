@@ -29,7 +29,7 @@
         } else {
             $sql .= " WHERE (userId = '$userIds[1]'";
 
-            for ($i = 1; $i < count($userIds); $i++) {
+            for ($i = 2; $i < count($userIds); $i++) {
                 $sql .= " OR userId = '$userIds[$i]'";
             }
 

@@ -27,7 +27,7 @@
         } else {
             $tmpSQL .= " AND (user.userId = '$userIds[1]'";
 
-            for ($i = 1; $i < count($userIds); $i++) {
+            for ($i = 2; $i < count($userIds); $i++) {
                 $tmpSQL .= " OR user.userId = '$userIds[$i]'";
             }
 

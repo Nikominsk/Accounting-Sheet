@@ -62,7 +62,7 @@ $(window).on("load", function() {
     });
 
     //add filter item and refresh table
-    $('#section-visualisation-each-user.table-settings-bar .add-filter-item-button').on('click', function() {
+    $('#section-visualisation-each-user .table-settings-bar .add-filter-item-button').on('click', function() {
         visTable.addFilter($('#section-visualisation-each-user .table-settings-bar select').val());
 
         //Even Listener for removing filter + filter item

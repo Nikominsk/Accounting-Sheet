@@ -122,15 +122,14 @@ class AdvanceTableFilter {
 
                 value = [startDate, endDate];
 
+                htmlString += ' date-item" name = "date">' + startDate + " - " + endDate;
+
                 if($('#section-advance .filter-box .date-item').length != 0) {
                     if (confirm('You already filter for date, do you want to replace it?')) {
                         $('#section-advance .filter-box .date-item').remove();
-                        htmlString += ' date-item" name = "date">' + startDate + " - " + endDate;
                     } else {
-                        htmlString = "";
+                        return null;
                     }
-                } else {
-                    htmlString += ' date-item" name = "date">' + startDate + " - " + endDate;
                 }
 
                 break;
@@ -152,27 +151,21 @@ class AdvanceTableFilter {
 
                 if(isNaN(startAdvance) || isNaN(endAdvance)|| startAdvance < 0 || endAdvance < 0) {
                     alertFailure("Both numbers must be greater than 0.")
-                    htmlString = "";
-                    break;
+                    return null;
                 }
+
+                htmlString += ' advance-item" name = "advance">' + startAdvance + "€ - " + endAdvance + "€";
 
                 if($('#section-advance .filter-box .advance-item').length != 0) {
                     if (confirm('You already filter for advance, do you want to replace it?')) {
                         $('#section-advance .filter-box .advance-item').remove();
-                        htmlString += ' advance-item" name = "advance">' + startAdvance + "€ - " + endAdvance + "€";
                     } else {
-                        htmlString = "";
+                        return null;
                     }
-                } else {
-                    htmlString += ' advance-item" name = "advance">' + startAdvance + "€ - " + endAdvance + "€";
                 }
 
                 break;
 
-        }
-
-        if(htmlString == "") {
-            return null;
         }
 
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';

@@ -18,22 +18,24 @@
                     IFNULL((SELECT SUM(advance) FROM advance WHERE advance.userId = user.userId AND year(date) < '$curDateYear'), 0) AS prevAdvance
                     FROM user";
 
-    if($filterUserIds[0] !== 'ALL') {
+    if(count($userIds) >= 2) {
+        if($filterUserIds[1] !== 'ALL') {
 
-        if($filterUserIds[0] === 'ONLYACTIVES') {
-            $sql .= " WHERE active = 1";
-        } else if ($filterUserIds[0] === 'ONLYINACTIVES') {
-            $sql .= " WHERE active = 0";
-        } else {
-            $sql .= " WHERE (userId = '$filterUserIds[0]'";
+            if($filterUserIds[1] === 'ONLYACTIVES') {
+                $sql .= " WHERE active = 1";
+            } else if ($filterUserIds[1] === 'ONLYINACTIVES') {
+                $sql .= " WHERE active = 0";
+            } else {
+                $sql .= " WHERE (userId = '$filterUserIds[1]'";
 
-            for ($i = 1; $i < count($filterUserIds); $i++) {
-                $sql .= " OR userId = '$filterUserIds[$i]'";
+                for ($i = 2; $i < count($filterUserIds); $i++) {
+                    $sql .= " OR userId = '$filterUserIds[$i]'";
+                }
+
+                $sql .= ")";
             }
 
-            $sql .= ")";
         }
-
     }
                     
                     

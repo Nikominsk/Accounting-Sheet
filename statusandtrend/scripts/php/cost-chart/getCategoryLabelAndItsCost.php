@@ -17,13 +17,15 @@
     $sql ="SELECT category.label, (SELECT IFNULL(SUM(amount),0) as cost FROM cost WHERE cost.categoryId = category.categoryId AND cost.userId = '$userId'";
 
     //filter year
-    $sql .= " AND (year(cost.date) = '$filterYears[0]'";
-
-    for ($i = 1; $i < count($filterYears); $i++) {
-        $sql .= " OR year(cost.date) = '$filterYears[$i]'";
+    if(count($filterYears) >= 2) {
+        $sql .= " AND (year(cost.date) = '$filterYears[1]'";
+        for ($i = 2; $i < count($filterYears); $i++) {
+            $sql .= " OR year(cost.date) = '$filterYears[$i]'";
+        }
+        $sql .= ")";
     }
 
-    $sql .= ")) as cost FROM category GROUP BY category.label ORDER BY category.categoryId";
+    $sql .= ") as cost FROM category GROUP BY category.label ORDER BY category.categoryId";
 
 
     //execute sql code

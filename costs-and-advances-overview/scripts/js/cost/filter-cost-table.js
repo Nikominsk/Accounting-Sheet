@@ -177,8 +177,7 @@ class CostTableFilter {
 
                 if(value == '') {
                     alertFailure('The input must be filled');
-                    htmlString = "";
-                    break;
+                    return null;
                 }
     
                 htmlString += ' description-item" name = "description-' + value + '">'+ value;
@@ -187,8 +186,7 @@ class CostTableFilter {
                 $('#section-all-costs .filter-box .description-item').each(function( index ) {
                     if($( this ).text().toLocaleLowerCase().indexOf(value) != -1) {
                         alertFailure('Already exists');
-                        htmlString = "";
-                        return;
+                        return null;
                     }
                 });
     
@@ -207,8 +205,7 @@ class CostTableFilter {
                 $('#section-all-costs .filter-box .username-item').each(function( index ) {
                     if($( this ).text().indexOf(value) != -1) {
                         alertFailure('Already exists');
-                        htmlString = "";
-                        return;
+                        return null;
                     }
                 });
     
@@ -230,8 +227,7 @@ class CostTableFilter {
                 $('#section-all-costs .filter-box .category-item').each(function( index ) {
                     if($( this ).text().indexOf(value) != -1) {
                         alertFailure('Already exists');
-                        htmlString = "";
-                        return;
+                        return null;
                     }
                 });
     
@@ -257,19 +253,16 @@ class CostTableFilter {
     
                 if(isNaN(startPrice) || isNaN(endPrice)|| startPrice < 0 || endPrice < 0) {
                     alertFailure("Both numbers must be greater than 0.")
-                    htmlString = "";
-                    break;
+                    return null;
                 }
-    
+                htmlString += ' amount-item" name = "amount">' + startPrice + "€ - " + endPrice + "€";
+
                 if($('#section-all-costs .filter-box .amount-item').length != 0) {
                     if (confirm('You already filter for price, do you want to replace it?')) {
                         $('#section-all-costs .filter-box .amount-item').remove();
-                        htmlString += ' amount-item" name = "amount">' + startPrice + "€ - " + endPrice + "€";
                     } else {
-                        htmlString = "";
+                        return null;
                     }
-                } else {
-                    htmlString += ' amount-item" name = "amount">' + startPrice + "€ - " + endPrice + "€";
                 }
     
     
@@ -287,26 +280,21 @@ class CostTableFilter {
                 }
 
                 value = [startDate, endDate];
-    
+
+                htmlString += ' date-item" name = "date">' + startDate + " - " + endDate;
+
                 if($('#section-all-costs .filter-box .date-item').length != 0) {
                     if (confirm('You already filter for date, do you want to replace it?')) {
                         $('#section-all-costs .filter-box .date-item').remove();
-                        htmlString += ' date-item" name = "date">' + startDate + " - " + endDate;
                     } else {
-                        htmlString = "";
+                        return null;
                     }
-                } else {
-                    htmlString += ' date-item" name = "date">' + startDate + " - " + endDate;
                 }
     
                 break;
     
         }
-    
-        if(htmlString == "") {
-            return null;
-        }
-    
+
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';
     
         //append item

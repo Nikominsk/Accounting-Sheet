@@ -44,7 +44,7 @@ class VisTableFilter {
     constructor() {
         this.userIds = ['ignore'];
         this.trendDiagramMonthBackAmount = "6";
-        this.costPortionChartOfYears = [new Date().getFullYear()-1];
+        this.costPortionChartOfYears = ["ignore"];
     }
 
     changeFilterInputs(type) {
@@ -89,12 +89,12 @@ class VisTableFilter {
 
             case "costdia":
                 //get current year
-                var curYear = new Date().getFullYear() - 4;
+                var curYear = new Date().getFullYear();
 
-                htmlString = '<select>';
+                htmlString = '<select><option selected>'+ curYear +'</option>';
 
-                for(var i = 0; i < 4; i++) {
-                    htmlString += "<option selected>"+ ++curYear +"</option>";
+                for(var i = 3; i >= 0; i--) {
+                    htmlString += "<option>"+ --curYear +"</option>";
                 }
 
                 htmlString += "</select>";
@@ -115,6 +115,12 @@ class VisTableFilter {
             case "username":
                 this.userIds.push(value);
                 break;
+            case "trenddia":
+                this.trendDiagramMonthBackAmount = value;
+                break;
+            case "costdia":
+                this.costPortionChartOfYears.push(value);
+
         }
 
         return true;
@@ -128,20 +134,19 @@ class VisTableFilter {
         switch(itemType) {
 
             case "username":
-
-                value = $('#section-visualisation-each-user.filter-content-container select[name="username-select"] option:selected').text();
+                value = $('#section-visualisation-each-user .filter-content-container select option:selected').text();
 
                 //get ID of category
-                var userId = $('#section-visualisation-each-user.filter-content-container select[name="username-select"] option:selected').val();
+                var userId = $('#section-visualisation-each-user .filter-content-container select option:selected').val();
 
                 htmlString += ' username-item" name = "username-' + userId + '">' + value;
 
-                //check if category already exists
-                $('#section-visualisation-each-user.filter-box .username-item').each(function( index ) {
+                //check if user already exists
+                $('#section-visualisation-each-user .filter-box .username-item').each(function( index ) {
+
                     if($( this ).text().indexOf(value) != -1) {
                         alertFailure('Already exists');
-                        htmlString = "";
-                        return;
+                        return null;
                     }
                 });
 
@@ -151,23 +156,33 @@ class VisTableFilter {
                 break;
 
             case "trenddia":
-            case "costdia":
-                htmlString = '<input type = "number">';
+                value = $('#section-visualisation-each-user .filter-content-container select option:selected').text();
+                
+                htmlString += ' trenddia-item" name = "trenddia-' + value + '">' + value;
+
+                if($('#section-visualisation-each-user .filter-box .trenddia-item').length != 0) {
+                    if (confirm('You already filter for month interval, do you want to replace it?')) {
+                        $('#section-visualisation-each-user .filter-box .filter-container .trenddia-item').remove();
+                    } else {
+                        return null;
+                    }
+                }
+
                 break;
 
-        }
+            case "costdia":
+                value = $('#section-visualisation-each-user .filter-content-container select option:selected').text();
+                htmlString += ' '+ itemType +'-item" name = "'+ itemType +'-' + value + '">' + value;
 
-        if(htmlString == "") {
-            return false;
         }
 
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 
         //append item
-        $('#section-visualisation-each-user.filter-box .filter-container').append(htmlString);
+        $('#section-visualisation-each-user .filter-box .filter-container').append(htmlString);
 
         //set input value to '' again
-        $('#section-visualisation-each-user.filter-content-container input[type="text"]').val('');
+        $('#section-visualisation-each-user .filter-content-container input[type="text"]').val('');
 
         return value;
     }
@@ -180,13 +195,19 @@ class VisTableFilter {
             case "username":
                 this.userIds = this.userIds.filter(e => e !== splitted[1]);
                 break;
+            case "trenddia":
+                this.trendDiagramMonthBackAmount = "6"; //default
+                break;
+            case "costdia":
+                this.costPortionChartOfYears = this.costPortionChartOfYears.filter(e => e !== splitted[1]);
+                break;
         }
 
         this.removeFilterItem(nameId);
     }
 
     removeFilterItem(nameId) {
-        $('#section-visualisation-each-user.filter-box .filter-container .filter-item[name='+ nameId +']').remove();
+        $('#section-visualisation-each-user .filter-box .filter-container .filter-item[name='+ nameId +']').remove();
     }
 
 }

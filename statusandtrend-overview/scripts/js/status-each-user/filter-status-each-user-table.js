@@ -109,18 +109,13 @@ class StatusTableFilter {
                 $('#section-status-each-user .filter-box .username-item').each(function( index ) {
                     if($( this ).text().indexOf(value) != -1) {
                         alertFailure('Already exists');
-                        htmlString = "";
-                        return;
+                        return null;
                     }
                 });
 
                 //value has to be the user id, its for the database
                 value = userId;
 
-        }
-
-        if(htmlString == "") {
-            return false;
         }
 
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';
