@@ -24,6 +24,7 @@
     <link rel = "stylesheet" type = "text/css" href = "../utils/css/template.css">
     <link rel = "stylesheet" type = "text/css" href = "../utils/css/global.css">
     <link rel = "stylesheet" type = "text/css" href = "../utils/css/dataTable.css">
+    <link rel = "stylesheet" type = "text/css" href = "../costs-and-advances/scripts/css/style.css">
 
     <!-- JQuery include -->
     <script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>   <!-- able to update part of page with php -->
@@ -49,10 +50,6 @@
     <script src = "../costs-and-advances/scripts/js/advance/filter-advance-table.js"></script>
     <script src = "../costs-and-advances/scripts/js/advance/refresh-advance-table.js"></script>
 
-    <!-- for appearing filter-modal-window -->
-    <script src="../costs-and-advances/modal-window/cost/filter/scripts/js/actions.js"></script>
-    <script src="../costs-and-advances/modal-window/advance/filter/scripts/js/actions.js"></script>
-
     <script src="../costs-and-advances/modal-window/cost/editor/scripts/js/actions.js"></script>
     <script src="../costs-and-advances/modal-window/advance/editor/scripts/js/actions.js"></script>
 
@@ -61,13 +58,9 @@
 </head>
 <body>
 
-    <!-- includes of filter-windows -->
-    <?php include('../costs-and-advances/modal-window/cost/filter/html/'.$user->getLanguage().'/modal-window-filter-cost.php');?>
-    <?php include('../costs-and-advances/modal-window/advance/filter/html/'.$user->getLanguage().'/modal-window-filter-advance.php');?>
-
     <!-- includes of editor-windows -->
-    <?php include('../costs-and-advances/modal-window/cost/editor/html/'.$user->getLanguage().'/editor-window-cost.php');?>
-    <?php include('../costs-and-advances/modal-window/advance/editor/html/'.$user->getLanguage().'/editor-window-advance.php');?>
+    <?php include('../costs-and-advances/modal-window/cost/editor/html/editor-window-cost.php');?>
+    <?php include('../costs-and-advances/modal-window/advance/editor/html/editor-window-advance.php');?>
 
     <div id = "wrapper">
 
@@ -83,7 +76,7 @@
 
                 <content>
 
-                    <?php include('../costs-and-advances/html/'.$user->getLanguage().'/costs-and-advances.php'); ?>
+                    <?php include('../costs-and-advances/html/costs-and-advances.php'); ?>
 
                 </content>
 

@@ -59,7 +59,7 @@
 
             <content>
 
-                <?php include('../user-settings/html/'.$user->getLanguage().'/user-settings.php'); ?>
+                <?php include('../user-settings/html/user-settings.php'); ?>
 
             </content>
 

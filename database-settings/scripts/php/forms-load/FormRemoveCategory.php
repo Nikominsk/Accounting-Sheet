@@ -11,9 +11,9 @@
         alertFailure($lang[$user->getLanguage()]["LoadError1"]);
     } else {
 
-        echo "<option value = '0'>". $lang[$user->getLanguage()]["ChooseCategory"] ."</option>";
+        echo "<option value = '0'>". $hlang[$user->getLanguage()]["ccategory"] ."</option>";
 
-        //option "Other" is not deleteable, so dont even show it
+        //option "other" is not deleteable, so dont even show it
         mysqli_fetch_array($result,MYSQLI_NUM);
 
         //list all ranks

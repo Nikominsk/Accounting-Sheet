@@ -45,7 +45,7 @@ function saveRecordCost() {
 
                 closeEditorWindowCost();
 
-                refreshCostTable();
+                costTable.refresh();
 
             } else {
                 //something went wrong with saving input
@@ -82,7 +82,7 @@ function removeRecordCost() {
 
                 closeEditorWindowCost();
 
-                refreshCostTable();
+                costTable.refresh();
 
             } else {
                 //something went wrong with saving input

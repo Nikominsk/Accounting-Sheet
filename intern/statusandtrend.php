@@ -54,8 +54,8 @@
 <body>
 
     <!-- includes of filter-windows -->
-    <?php include('../statusandtrend/modal-window/trend-chart/filter/html/DE/modal-window-filter-trend-chart.php');?>
-    <?php include('../statusandtrend/modal-window/cost-chart/filter/html/DE/modal-window-filter-cost-chart.php');?>
+    <?php include('../statusandtrend/modal-window/trend-chart/filter/html/modal-window-filter-trend-chart.php');?>
+    <?php include('../statusandtrend/modal-window/cost-chart/filter/html/modal-window-filter-cost-chart.php');?>
 
     <div id = "wrapper">
 
@@ -71,7 +71,7 @@
 
                 <content>
 
-                    <?php include('../statusandtrend/html/'.$user->getLanguage().'/statusandtrend.php'); ?>
+                    <?php include('../statusandtrend/html/statusandtrend.php'); ?>
 
                 </content>
 

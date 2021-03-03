@@ -108,8 +108,8 @@ class StatusTableFilter {
                 //check if category already exists
                 $('#section-status-each-user .filter-box .username-item').each(function( index ) {
                     if($( this ).text().indexOf(value) != -1) {
-                        alertFailure('Already exists');
-                        return null;
+                        alertFailureLang("AlreadyExistsError5");
+                        htmlString = null;
                     }
                 });
 
@@ -117,6 +117,8 @@ class StatusTableFilter {
                 value = userId;
 
         }
+
+        if(htmlString == null) return null;
 
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 

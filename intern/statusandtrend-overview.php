@@ -85,7 +85,7 @@
 
                 <content>
 
-                    <?php include('../statusandtrend-overview/html/'.$user->getLanguage().'/statusandtrend-overview.php'); ?>
+                    <?php include('../statusandtrend-overview/html/statusandtrend-overview.php'); ?>
 
                 </content>
 

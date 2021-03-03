@@ -61,7 +61,7 @@
 
                 <content>
 
-                    <?php include('../entry/html/'.$user->getLanguage().'/entry.php'); ?>
+                    <?php include('../entry/html/entry.php'); ?>
 
                 </content>
 

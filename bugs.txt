@@ -1,3 +1,5 @@
-order of tables does not work that good
-
 no bug, performace is better with: mysqli_fetch_assoc
+
+cost table "other" in "Other" oder "Sonstige" abhängig von der Sprache
+
+username länge bei registrierung max länge der breite der Tabellen

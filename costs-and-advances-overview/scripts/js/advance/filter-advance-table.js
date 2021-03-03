@@ -146,8 +146,8 @@ class AdvanceTableFilter {
                 //check if category already exists
                 $('#section-all-advances .filter-box .username-item').each(function( index ) {
                     if($( this ).text().indexOf(value) != -1) {
-                        alertFailure('Already exists');
-                        return null;
+                        alertFailureLang("AlreadyExistsError5");
+                        htmlString = null;
                     }
                 });
 
@@ -175,7 +175,7 @@ class AdvanceTableFilter {
                     if (confirm('You already filter for date, do you want to replace it?')) {
                         $('#section-all-advances .filter-box .date-item').remove();
                     } else {
-                        return null;
+                        htmlString = null;
                     }
                 }
 
@@ -185,6 +185,14 @@ class AdvanceTableFilter {
                 var startAdvance =  $('#section-all-advances .right-div .filter-inputs-container span:first-child input[type="text"]').val().trim();
                 var endAdvance =  $('#section-all-advances .right-div .filter-inputs-container span:last-child input[type="text"]').val().trim();
 
+                startAdvance = parseInt(startAdvance);
+                endAdvance = parseInt(endAdvance);
+
+                if(isNaN(startAdvance) || isNaN(endAdvance)|| startAdvance < 0 || endAdvance < 0) {
+                    alertFailureLang("InvInput19");
+                    return null;
+                }
+
                 if(startAdvance > endAdvance) {
                     var tmp = startAdvance;
                     startAdvance = endAdvance;
@@ -193,27 +201,21 @@ class AdvanceTableFilter {
 
                 value = [startAdvance, endAdvance];
 
-                startAdvance = parseInt(startAdvance);
-                endAdvance = parseInt(endAdvance);
-
-                if(isNaN(startAdvance) || isNaN(endAdvance)|| startAdvance < 0 || endAdvance < 0) {
-                    alertFailure("Both numbers must be greater than 0.")
-                    return null;
-                }
-
                 htmlString += ' advance-item" name = "advance">' + startAdvance + "€ - " + endAdvance + "€";
 
                 if($('#section-all-advances .filter-box .advance-item').length != 0) {
                     if (confirm('You already filter for advance, do you want to replace it?')) {
                         $('#section-all-advances .filter-box .advance-item').remove();
                     } else {
-                        return null;
+                        htmlString = null;
                     }
                 }
 
                 break;
 
         }
+
+        if(htmlString == null) return null;
 
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 

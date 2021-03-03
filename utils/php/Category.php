@@ -20,7 +20,7 @@
 
         }
 
-        $htmlText .= "<option value='$firstRow[0]'>" . $lang[$user->getLanguage()][$firstRow[1]] . "</option>";
+        $htmlText .= "<option value='$firstRow[0]'>" . $hlang[$user->getLanguage()][$firstRow[1]] . "</option>";
 
     }
 

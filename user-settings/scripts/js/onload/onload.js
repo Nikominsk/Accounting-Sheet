@@ -1,6 +1,3 @@
-
-var chooseUser = "ChooseUser";
-
 //if page completely loaded
 $(window).on("load", function() {
 
@@ -229,7 +226,6 @@ function loadFormUsersPasswordChange() {
     var selectElement = $('#section-user-password-change select[name="select-userId"]');
     selectElement.empty();
     selectElement.load("../user-settings/scripts/php/utils/LoadUsers.php", {
-        firstOptionText: chooseUser,
         active: 1,
         deleted: 0
     }, function() {});
@@ -241,7 +237,6 @@ function loadFormUserAllow() {
     var selectElement = $('#section-user-allow select[name="select-userId"]');
     selectElement.empty();
     selectElement.load("../user-settings/scripts/php/utils/LoadUsers.php", {
-        firstOptionText: chooseUser,
         active: 0,
         deleted: 0
     }, function() {});
@@ -253,7 +248,6 @@ function loadFormUserDeny() {
     var selectElement = $('#section-user-deny select[name="select-userId"]');
     selectElement.empty();
     selectElement.load("../user-settings/scripts/php/utils/LoadUsers.php", {
-        firstOptionText: chooseUser,
         active: 1,
         deleted: 0
     }, function() {});
@@ -265,7 +259,6 @@ function loadFormUserRemove() {
     var selectElement = $('#section-user-remove select[name="select-userId"]');
     selectElement.empty();
     selectElement.load("../user-settings/scripts/php/utils/LoadUsers.php", {
-        firstOptionText: chooseUser,
         deleted: 0
     }, function() {});
 
@@ -276,7 +269,6 @@ function loadFormRankDistribution() {
     var selectElement = $('#section-rank-distribution select[name="select-userId"]');
     selectElement.empty();
     selectElement.load("../user-settings/scripts/php/utils/LoadUsers.php", {
-        firstOptionText: chooseUser,
         active: 1,
         deleted: 0
     }, function() {});

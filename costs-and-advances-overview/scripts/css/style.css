@@ -1,0 +1,32 @@
+
+/* COST TABLE */
+
+#section-all-costs .table-showcase tbody tr td:first-child,
+#section-all-costs .table-showcase thead tr th:first-child {
+    width: 130px;
+}
+
+#section-all-costs .table-showcase tbody tr td:nth-child(2),
+#section-all-costs .table-showcase thead tr th:nth-child(2) {
+    width: 180px;
+}
+
+#section-all-costs .table-showcase tbody tr td:nth-child(3),
+#section-all-costs .table-showcase thead tr th:nth-child(3) {
+    width: 120px;
+}
+
+#section-all-costs .table-showcase tbody tr td:nth-child(4),
+#section-all-costs .table-showcase thead tr th:nth-child(4) {
+    width: 170px;
+}
+
+#section-all-costs .table-showcase tbody tr td:nth-child(5),
+#section-all-costs .table-showcase thead tr th:nth-child(5) {
+    width: 100px;
+}
+
+#section-all-costs .table-showcase tbody tr td:nth-child(6),
+#section-all-costs .table-showcase thead tr th:nth-child(6) {
+    width: 130px;
+}

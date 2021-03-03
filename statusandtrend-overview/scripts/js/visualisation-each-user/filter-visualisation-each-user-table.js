@@ -143,10 +143,9 @@ class VisTableFilter {
 
                 //check if user already exists
                 $('#section-visualisation-each-user .filter-box .username-item').each(function( index ) {
-
                     if($( this ).text().indexOf(value) != -1) {
-                        alertFailure('Already exists');
-                        return null;
+                        alertFailureLang("AlreadyExistsError5");
+                        htmlString = null;
                     }
                 });
 
@@ -157,14 +156,14 @@ class VisTableFilter {
 
             case "trenddia":
                 value = $('#section-visualisation-each-user .filter-content-container select option:selected').text();
-                
+
                 htmlString += ' trenddia-item" name = "trenddia-' + value + '">' + value;
 
                 if($('#section-visualisation-each-user .filter-box .trenddia-item').length != 0) {
                     if (confirm('You already filter for month interval, do you want to replace it?')) {
                         $('#section-visualisation-each-user .filter-box .filter-container .trenddia-item').remove();
                     } else {
-                        return null;
+                        htmlString = null;
                     }
                 }
 
@@ -174,7 +173,17 @@ class VisTableFilter {
                 value = $('#section-visualisation-each-user .filter-content-container select option:selected').text();
                 htmlString += ' '+ itemType +'-item" name = "'+ itemType +'-' + value + '">' + value;
 
+                //check if user already exists
+                $('#section-visualisation-each-user .filter-box .costdia-item').each(function( index ) {
+                    if($( this ).text().indexOf(value) != -1) {
+                        alertFailureLang("AlreadyExistsError6");
+                        htmlString = null;
+                    }
+                });
+
         }
+
+        if(htmlString == null) return null;
 
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 

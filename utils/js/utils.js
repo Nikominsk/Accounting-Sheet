@@ -1,26 +1,65 @@
+let alertWrapper = null;
+
+$(window).on("load", function() {
+    $('<div id = "falerts-parent-wrapper"><div id = "falerts-child-wrapper"></div></div>').appendTo("body");
+    alertWrapper = document.getElementById("falerts-child-wrapper");
+});
+
 
 //if page completely loaded
 function alertSuccess(msg) {
-    var alertContainer = $( '<div class = "alert alert-success">' + msg + '</div>' );
+    var alertContainer = $( '<div class = "alert-success">'+
+                                    msg +
+                            '</div>' );
 
     alertContainer.appendTo("body");
 
-    alertContainer.fadeIn(300).delay(1700).fadeOut(400, function() {
+    alertContainer.fadeIn(300).delay(2000).fadeOut(400, function() {
         alertContainer.remove();
     });
 
 }
 
 function alertFailure(msg) {
+    var alertContainer = $( '<div class = "alert-failure">'+
+                                    '<button >×</button>' +
+                                        msg +
+                                '</div>');
+    var clicked = false;
 
-  var alertContainer = $( '<div class = "alert alert-failure">' + msg + '</div>' );
+    alertContainer.appendTo(alertWrapper);
 
-  alertContainer.appendTo("body");
+    alertContainer.children('button')[0].addEventListener("click", function() {
+        alertContainer.remove();
+    });
 
-  alertContainer.fadeIn(300).delay(5000).fadeOut(400, function() {
-      alertContainer.remove();
-  });
+    alertContainer.on("click", function() {
+        //dont remove automatically, wait until user closes
+        clicked = true;
+        alertContainer.attr('style', 'border: 2px solid #ff4141 !important');
+    });
 
+    alertContainer.fadeIn(300);
+
+    setTimeout(function() {
+        if(!clicked) {
+            alertContainer.fadeOut(400, function() {
+                alertContainer.remove();
+            });
+        }
+    }, 3000);
+
+}
+
+function alertFailureLang(msgId) {
+    $.ajax({
+        type: "POST",
+        url: '../utils/php/MakeTranslation.php',
+        data: {functionname: 'lang', arguments: [msgId]},
+        success: function (response) {
+                    alertFailure(response);
+                }
+    });
 }
 
 function getFirstDateThisYear() {

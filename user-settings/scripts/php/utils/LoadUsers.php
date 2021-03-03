@@ -4,7 +4,6 @@
 
     $myRankId = $user->getRankId();
 
-    $firstOptionText = $_POST['firstOptionText'];
     $active = (bool) $_POST['active'];
     $deleted = (bool) $_POST['deleted'];
 
@@ -23,13 +22,13 @@
         $sql .= " And active = 1";
     } else if($active === FALSE) {
         $sql .= " And active = 0";
-    } 
+    }
 
     if($deleted === FALSE) {
         $sql .= " And deleted = 0";
     } else if($deleted === TRUE) {
         $sql .= " And deleted = 1";
-    } 
+    }
 
 
     $result = $db->query($sql);
@@ -39,8 +38,8 @@
         alertFailure($lang[$user->getLanguage()]["LoadError2"]);
     } else {
 
-        echo '<option value = "0">'.$lang[$user->getLanguage()][$firstOptionText].'</option>';
-        //list all categories
+        echo '<option value = "0">'.$hlang[$user->getLanguage()]["cuser"].'</option>';
+        //list all user
         while($row = mysqli_fetch_array($result,MYSQLI_NUM)) {
             echo "<option value='$row[0]'>" . $row[1] . "</option>";
 

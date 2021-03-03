@@ -1,3 +1,7 @@
+//need to be accessible from modal window
+let costTable = null;
+let advTable = null;
+
 //if page completely loaded
 $(window).on("load", function() {
 
@@ -7,7 +11,7 @@ $(window).on("load", function() {
     let costTableSorting = new CostTableSorting(  $("#costId-div .sorting-img"),
                                                     "costId ASC");
     let costTableFilter = new CostTableFilter();
-    let costTable = new CostTable(costTableSorting, costTableFilter);
+    costTable = new CostTable(costTableSorting, costTableFilter);
     costTable.filter.changeFilterInputs( $('#section-all-costs .table-settings-bar select').val(),
                                         $('#section-all-costs .table-settings-bar select option:selected'));
 
@@ -15,7 +19,7 @@ $(window).on("load", function() {
     let advTableSorting = new AdvanceTableSorting(  $("#advanceId-div .sorting-img"),
                                                     "advanceId ASC");
     let advTableFilter = new AdvanceTableFilter();
-    let advTable = new AdvanceTable(advTableSorting, advTableFilter);
+    advTable = new AdvanceTable(advTableSorting, advTableFilter);
     advTable.filter.changeFilterInputs( $('#section-all-advances .table-settings-bar select').val());
 
 
@@ -65,16 +69,8 @@ $(window).on("load", function() {
 
     });
 
-    $("#section-all-costs .filter-label").click(function(e) {
-        $("#modal-window-filter-all-cost").show();
-    });
-
     $("#section-all-costs .button-refresh").click(function(){
         costTable.refresh();
-    });
-
-    $("#section-all-advances .filter-label").click(function(e) {
-        $("#modal-window-filter-all-advance").show();
     });
 
     $("#section-all-advances .button-refresh").click(function(){
@@ -84,7 +80,7 @@ $(window).on("load", function() {
     //fill some fields
     $('#section-all-costs .filter-date').html(getFirstDateThisYear().replace(/-/g, '.') + ' - ' + getCurrentDate().replace(/-/g, '.'));
     $('#section-all-advances .filter-date').html(getFirstDateThisYear().replace(/-/g, '.') + ' - ' + getCurrentDate().replace(/-/g, '.'));
-    
+
     //init labels of totals
     $("#section-all-costs .total-costs").load("../costs-and-advances-overview/scripts/php/cost/load/cost-total.php");
     $("#section-all-advances .total-advance").load("../costs-and-advances-overview/scripts/php/advance/load/advance-total.php");

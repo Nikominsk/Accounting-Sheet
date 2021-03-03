@@ -12,8 +12,8 @@
         alertFailure($lang[$user->getLanguage()]["LoadError2"]);
     } else {
 
-        $htmlText .= "<option value = 'ONLYACTIVES' selected>". $lang[$user->getLanguage()]["OnlyActiveUser"] ."</option>";
-        $htmlText .= "<option value = 'ONLYINACTIVES'>". $lang[$user->getLanguage()]["OnlyInactiveUser"] ."</option>";
+        $htmlText .= "<option value = 'ONLYACTIVES' selected>". $hlang[$user->getLanguage()]["onlyactiveuser"] ."</option>";
+        $htmlText .= "<option value = 'ONLYINACTIVES'>". $hlang[$user->getLanguage()]["onlyinactiveuser"] ."</option>";
 
         //list all categories
         while($row = mysqli_fetch_array($result,MYSQLI_NUM)) {

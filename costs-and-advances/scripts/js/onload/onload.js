@@ -1,13 +1,16 @@
+//need to be accessible from modal window
+let costTable = null;
+let advTable = null;
+
 //if page completely loaded
 $(window).on("load", function() {
-
     //refreshStatus();
 
     //set default values
     let costTableSorting = new CostTableSorting(  $("#costId-div .sorting-img"),
                                                 "costId ASC");
     let costTableFilter = new CostTableFilter();
-    let costTable = new CostTable(costTableSorting, costTableFilter);
+    costTable = new CostTable(costTableSorting, costTableFilter);
     costTable.filter.changeFilterInputs( $('#section-costs .table-settings-bar select').val(),
                                         $('#section-costs .table-settings-bar select option:selected'));
 
@@ -15,14 +18,14 @@ $(window).on("load", function() {
     let advTableSorting = new AdvanceTableSorting(  $("#advanceId-div .sorting-img"),
                                                     "advanceId ASC");
     let advTableFilter = new AdvanceTableFilter();
-    let advTable = new AdvanceTable(advTableSorting, advTableFilter);
+    advTable = new AdvanceTable(advTableSorting, advTableFilter);
 
     advTable.filter.changeFilterInputs( $('#section-advance .table-settings-bar select').val());
 
     /* COST TABLE */
 
     //only for ordering
-    $("#section-costs.table-showcase th div").click(function(e) {
+    $("#section-costs .table-showcase th div").click(function(e) {
         costTable.sort($(this).attr('id'), $(this).attr('name'));
     });
 
@@ -65,18 +68,8 @@ $(window).on("load", function() {
 
     });
 
-
-
-    $("#section-costs .filter-label").click(function(e) {
-        $("#modal-window-filter-cost").show();
-    });
-
     $("#section-costs .button-refresh").click(function(){
         costTable.refresh();
-    });
-
-    $("#section-advance .filter-label").click(function(e) {
-        $("#modal-window-filter-advance").show();
     });
 
     $("#section-advance .button-refresh").click(function(){

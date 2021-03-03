@@ -66,7 +66,7 @@
 
                 <content>
 
-                    <?php include('../database-settings/html/'.$user->getLanguage().'/database-settings.php'); ?>
+                    <?php include('../database-settings/html/database-settings.php'); ?>
 
                 </content>
 

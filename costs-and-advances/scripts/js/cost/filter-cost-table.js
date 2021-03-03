@@ -115,7 +115,7 @@ class CostTableFilter {
         //it can be either be 1 value (not array) or 2
         var value = this.addFilterItem(itemType);
 
-        if(value == false) return false;
+        if(value == null) return false;
 
         switch (itemType) {
             case "description":
@@ -149,7 +149,7 @@ class CostTableFilter {
                 value = value.toLocaleLowerCase();
 
                 if(value == '') {
-                    alertFailure('The input must be filled');
+                    alertFailureLang("InvInput7");
                     return null;
                 }
 
@@ -158,8 +158,8 @@ class CostTableFilter {
                 //check if category already exists
                 $('#section-costs .filter-box .description-item').each(function( index ) {
                     if($( this ).text().toLocaleLowerCase().indexOf(value) != -1) {
-                        alertFailure('Already exists');
-                        return null;
+                        alertFailureLang("AlreadyExistsError4");
+                        htmlString = null;
                     }
                 });
 
@@ -177,8 +177,8 @@ class CostTableFilter {
                 //check if category already exists
                 $('#section-costs .filter-box .category-item').each(function( index ) {
                     if($( this ).text().indexOf(value) != -1) {
-                        alertFailure('Already exists');
-                        return null;
+                        alertFailureLang("AlreadyExistsError1");
+                        htmlString = null;
                     }
                 });
 
@@ -191,6 +191,13 @@ class CostTableFilter {
                 var startPrice =  $('#section-costs .right-div .filter-inputs-container span:first-child input[type="text"]').val().trim();
                 var endPrice =  $('#section-costs .right-div .filter-inputs-container span:last-child input[type="text"]').val().trim();
 
+                startPrice = parseInt(startPrice);
+                endPrice = parseInt(endPrice);
+
+                if(isNaN(startPrice) || isNaN(endPrice)|| startPrice < 0 || endPrice < 0) {
+                    alertFailureLang("InvInput19");
+                    return null;
+                }
 
                 if(startPrice > endPrice) {
                     var tmp = startPrice;
@@ -200,24 +207,15 @@ class CostTableFilter {
 
                 value = [startPrice, endPrice];
 
-                startPrice = parseInt(startPrice);
-                endPrice = parseInt(endPrice);
-
-                if(isNaN(startPrice) || isNaN(endPrice)|| startPrice < 0 || endPrice < 0) {
-                    alertFailure("Both numbers must be greater than 0.")
-                    return null;
-                }
-
                 htmlString += ' amount-item" name = "amount">' + startPrice + "€ - " + endPrice + "€";
 
                 if($('#section-costs .filter-box .amount-item').length != 0) {
                     if (confirm('You already filter for price, do you want to replace it?')) {
                         $('#section-costs .filter-box .amount-item').remove();
                     } else {
-                        return null;
+                        htmlString = null;
                     }
                 }
-
 
                 break;
 
@@ -240,13 +238,15 @@ class CostTableFilter {
                     if (confirm('You already filter for date, do you want to replace it?')) {
                         $('#section-costs .filter-box .date-item').remove();
                     } else {
-                        return null;
+                        htmlString = null;
                     }
                 }
 
                 break;
 
         }
+
+        if(htmlString == null) return null;
 
         htmlString += '<span class = "option-remove">&#x2715;</span></span>';
 

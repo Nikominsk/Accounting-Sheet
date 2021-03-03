@@ -40,7 +40,7 @@ function saveRecordAdvance() {
 
                 closeEditorWindowAdvance();
 
-                refreshAdvanceTable();
+                advTable.refresh();
 
             } else {
                 //something went wrong with saving input
@@ -77,7 +77,7 @@ function removeRecordAdvance() {
 
                 closeEditorWindowAdvance();
 
-                refreshAdvanceTable();
+                advTable.refresh();
 
             } else {
                 //something went wrong with saving input

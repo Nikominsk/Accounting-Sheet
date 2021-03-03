@@ -62,7 +62,8 @@
 
             echo "<td>".$row['costId']."</td>";
             echo "<td>".$row['travelId']."</td>";
-            echo "<td>".$row['label']."</td>";
+            if($row['label'] == "other") echo "<td>".$hlang[$user->getLanguage()]["other"]."</td>";
+            else echo "<td>".$row['label']."</td>";
             echo "<td>".$row['date']."</td>";
             echo "<td>".getFormattedNumber($row['amount'], $numberFormat)."</td>";
             echo "<td>".$row['description']."</td>";

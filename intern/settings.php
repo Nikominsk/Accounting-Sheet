@@ -70,7 +70,7 @@
 
                 <content>
 
-                    <?php include('../settings/html/'.$user->getLanguage().'/settings.php'); ?>
+                    <?php include('../settings/html/settings.php'); ?>
 
                 </content>
 

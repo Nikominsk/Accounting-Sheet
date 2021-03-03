@@ -28,6 +28,7 @@
     <link rel = "stylesheet" type = "text/css" href = "../utils/css/template.css">
     <link rel = "stylesheet" type = "text/css" href = "../utils/css/global.css">
     <link rel = "stylesheet" type = "text/css" href = "../costs-and-advances-overview/scripts/css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "../costs-and-advances-overview/scripts/css/style.css">
 
     <!-- JQuery include -->
     <script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>   <!-- able to update part of page with php -->
@@ -48,10 +49,6 @@
     <script src = "../costs-and-advances-overview/scripts/js/advance/filter-advance-table.js"></script>
     <script src = "../costs-and-advances-overview/scripts/js/advance/refresh-advance-table.js"></script>
 
-    <!-- for appearing filter-modal-window -->
-    <script src="../costs-and-advances-overview/modal-window/cost/filter/scripts/js/actions.js"></script>
-    <script src="../costs-and-advances-overview/modal-window/advance/filter/scripts/js/actions.js"></script>
-
     <script src="../costs-and-advances-overview/modal-window/cost/editor/scripts/js/actions.js"></script>
     <script src="../costs-and-advances-overview/modal-window/advance/editor/scripts/js/actions.js"></script>
 
@@ -60,13 +57,9 @@
 </head>
 <body>
 
-    <!-- includes of filter-windows -->
-    <?php include('../costs-and-advances-overview/modal-window/cost/filter/html/'.$user->getLanguage().'/modal-window-filter-cost.php');?>
-    <?php include('../costs-and-advances-overview/modal-window/advance/filter/html/'.$user->getLanguage().'/modal-window-filter-advance.php');?>
-
     <!-- includes of editor-windows -->
-    <?php include('../costs-and-advances-overview/modal-window/cost/editor/html/'.$user->getLanguage().'/editor-window-all-cost.php');?>
-    <?php include('../costs-and-advances-overview/modal-window/advance/editor/html/'.$user->getLanguage().'/editor-window-all-advance.php'); ?>
+    <?php include('../costs-and-advances-overview/modal-window/cost/editor/html/editor-window-all-cost.php');?>
+    <?php include('../costs-and-advances-overview/modal-window/advance/editor/html/editor-window-all-advance.php'); ?>
 
     <div id = "wrapper">
 
@@ -82,7 +75,7 @@
 
                 <content>
 
-                    <?php include('../costs-and-advances-overview/html/'.$user->getLanguage().'/costs-and-advances-overview.php'); ?>
+                    <?php include('../costs-and-advances-overview/html/costs-and-advances-overview.php'); ?>
 
                 </content>
 
